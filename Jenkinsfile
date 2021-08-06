@@ -10,6 +10,9 @@ node {
      }
 
      stage('Build image') {
+        sh '''
+            sudo chmod 666 /var/run/docker.sock
+        '''
         app = docker.build("${REPOSITORY_NAME}/${CONTAINER_NAME}:latest")
      }
 
