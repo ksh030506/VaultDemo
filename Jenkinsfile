@@ -20,7 +20,7 @@ node {
      }
 
      stage('Code Deploy') {
-        sh '''docker stop ${CONTAINER_NAME} || true && sudo docker rm ${CONTAINER_NAME} || true'''
+        sh '''docker stop ${CONTAINER_NAME} || true && docker rm ${CONTAINER_NAME} || true'''
         sh '''docker rmi -f `docker images | awk '$1 ~ /${CONTAINER_NAME}/ {print $3}'`'''
         sh '''docker run -d -p ${PORT}:${PORT} --name ${CONTAINER_NAME} ${REPOSITORY_NAME}/${CONTAINER_NAME}:latest'''
      }
