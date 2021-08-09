@@ -20,8 +20,8 @@ node {
      }
 
      stage('Code Deploy') {
-        sh '''sudo docker stop ${CONTAINER_NAME} || true && sudo docker rm ${CONTAINER_NAME} || true'''
-        sh '''sudo docker rmi -f `docker images | awk '$1 ~ /${CONTAINER_NAME}/ {print $3}'`'''
-        sh '''sudo docker run -d -p ${PORT}:${PORT} --name ${CONTAINER_NAME} ${REPOSITORY_NAME}/${CONTAINER_NAME}:latest'''
+        sh '''docker stop ${CONTAINER_NAME} || true && sudo docker rm ${CONTAINER_NAME} || true'''
+        sh '''docker rmi -f `docker images | awk '$1 ~ /${CONTAINER_NAME}/ {print $3}'`'''
+        sh '''docker run -d -p ${PORT}:${PORT} --name ${CONTAINER_NAME} ${REPOSITORY_NAME}/${CONTAINER_NAME}:latest'''
      }
 }
